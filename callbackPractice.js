@@ -24,14 +24,14 @@ and what you should write is the sayHi function that makes the code above work,
 
 
 
-var first = function(arr, cb) {
-  cb(arr[0]);
-};//Code Here for first
+const first = (arr, cb) => { cb(arr[0]) };
+//Code Here for first
 
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+
 first(names, function(firstName){
-  console.log('The first name in names is ' + firstName)
+  console.log('The first name in names is ' + firstName);
 });
 
 
@@ -41,9 +41,8 @@ first(names, function(firstName){
 
 
 
-var last = function(arr, cb) {
-  cb(arr[arr.length - 1]);
-};//Code Here for last
+const last = (arr, cb) => {cb(arr[arr.length - 1])}
+//Code Here for last
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -60,14 +59,12 @@ last(names, function(lastName){
 
 
 
-  var multiply = function(num1, num2, cb) {
-    cb(num1 * num2);
-  };//Code Here for multiply
+const multiply = (num1, num2, cb) => {cb(num1 * num2)};
+//Code Here for multiply
 
 multiply(4, 3, function(answer){
-  console.log('The answer is ' + answer); //should console.log 12
-})
-
+console.log('The answer is ' + answer); //should console.log 12
+});
 
 
 
@@ -78,15 +75,15 @@ multiply(4, 3, function(answer){
 
 
 
-var names = ["John", "Colt"]
-var contains = function(nms, nm, cb) {
-    for(var i = 0; i < nms.length; i++){
+
+const contains = (nms, nm, cb) => {
+    for(let i = 0; i < nms.length; i++){
       if (nm === nms[i]) {
-        return true;
+        return cb(true);
       }
-     }
-    return false;
-  }//Code Here for contains
+    }
+    return cb(false);
+  };//Code Here for contains
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -104,7 +101,10 @@ contains(names, 'Colt', function(result){
 
 
 
-    //Code Here for uniq
+const uniq = (names, cb) => {
+    let uniqArr = [...new Set(names)];
+return cb(uniqArr);
+};//Code Here for uniq
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -119,7 +119,11 @@ uniq(names, function(uniqArr){
 
 
 
-    //Code Here for each
+const each = (names, cb) => {
+	for (let i = 0; i < names.length; i++) {
+    	cb(names[i], i);
+	}
+};//Code Here for each
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -135,7 +139,15 @@ each(names, function(item, indice){
 
 
 
- //code here for getUserById
+const getUserById = (arr, str, cb) => {
+	for (let i = 0; i < users.length; i++) {
+      if (users[i].id === '16t') {
+		return cb(users[i]);
+
+		}
+	}
+};
+//code here for getUserById
 
 var users = [
   {
